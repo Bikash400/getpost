@@ -1,0 +1,33 @@
+﻿
+@{
+    //ViewData["Title"] = "showimage";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model CVMSCore.BAL.Models.HotelManagement.AddHotelDetails
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Example</title>
+</head>
+<body>
+
+    <div id="Shoe-section" class="Shoe-section">
+        <h2 style="text-align: left;margin-left: 40px;">SHOE</h2>
+        <div class="row Shoe-container" style="margin-right: 20px;margin-left: -1px; display: flex; flex-wrap: wrap;">
+
+            @foreach (var hotel in Model.HotelList)
+            {
+                <div class="myHotels">
+                    <img src="@hotel.hotelImages" alt="Hotel Image" >
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,45 @@
+﻿@model CVMSCore.BAL.Models.HotelManagement.LoginViewModel
+
+@{
+    ViewData["Title"] = "admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Login Page</h1>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
+
+<body>
+    @using (Html.BeginForm("login", "HotelManagement", FormMethod.Post, new { id = "loginForm" }))
+    {
+        <!-- UserName input -->
+        <div class="form-outline mb-4">
+            @Html.LabelFor(m => m.UserName, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            @ViewBag.ReturnMessage
+        </div>
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Log In</button>
+        <button type="button" id="signin" class="btn btn-primary btn-block mb-4">Sign In</button>
+        <script>
+            $('#signin').click(function () {
+                window.location.href = 'https://localhost:7044/HotelManagement/signin';
+            });
+        </script>
+    }
+
+</body>
+

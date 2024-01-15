@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Adminseecustomerbookingdetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section>
+
+    <nav class="navbar navbar-expand-lg navbar-light  bg-primary">
+        @* <a class="navbar-brand" href="#">Add Employee</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>*@
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" id="" href="https://localhost:7044/hotelmanagement/admin"> Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="" href="https://localhost:7044/hotelmanagement/adminhomepage"> Menu <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="" href="https://localhost:7044/hotelmanagement/getempdetails"> Add Employee <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="" href="https://localhost:7044/hotelmanagement/addhotel">Add Hotel <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="" href="https://localhost:7044/hotelmanagement/Adminseecustomerbookingdetails">Booking Details<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item nav-item-right" style="margin-left: 1000px;">
+                    <a href="https://localhost:7044/hotelmanagement/admin" class="nav-link badge badge-blue">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  
+    @*<div class="wraper-main-detail">*@
+    <div class="container-fluid">
+        <div class="row page-heading-row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h1 class="page-heading">Booking Details</h1>
+            </div>
+        </div>
+        <div class="shadow-border mb-3 bg-light">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="label-dflt">City</label>
+                        <select id="city" class="form-control">
+                            <option selected="" disabled>Select City</option>
+                            @*<option>1</option>
+                            <option>2</option>*@
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="label-dflt">State</label>
+                        <select id="hotel" class="form-control">
+                            <option selected="" disabled>Select Hotel</option>
+                            @*<option>1</option>
+                            <option>2</option>*@
+                        </select>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <div class="wraper-main-detail">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="search-strip">
+                        <ul class="search-box d-flex">
+                            <li class="flex-grow-1"><input type="text" placeholder="Search.." id="search" class="form-control"></li>
+                            <li><button type="button" class="btn btnGrey"><i class="fa fa-search" aria-hidden="true"></i></button></li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <table id="userTbl" class="table table-hover master-table table-bordered">
+                            <thead class="table-light-head">
+                                <tr>
+                                    <th scope="col">S no.</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Aadhar Number</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">City </th>
+                                    <th scope="col">Hotel</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Emailid</th>
+                                    <th scope="col">Room Preference</th>
+                                    <th scope="col">Number of Adults</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody id="mytable">
+                               
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</section>
+
+<script src="~/content/js/hotelmanagement/adminseecustomerdetails.js"></script>

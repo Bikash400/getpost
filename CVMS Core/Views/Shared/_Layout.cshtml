@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link href="~/content/css/example-styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/content/css/demo-styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/content/css/style.css" rel="stylesheet" />
+
+    @RenderSection("layoutCSS", required: false)
+
+</head>
+<body>
+
+    <nav id="navbar-top" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    </nav>
+    @*<nav id="navbar-top" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="#">
+    <img src="../Content/images/atlantis-logo-white.png" class="mr-2" style="width:28px; margin-top:-2px;">
+    <img src="../Content/images/logo-tim.svg" style="width: 80px; margin-top: 3px;">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+    <a class="nav-link" style="cursor:pointer" onclick="BackToService()">Back To Service</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="../SoftAt/SoftAt" style="cursor:pointer">Soft AT</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="../PmCompliance/Dashboard" style="cursor:pointer">PM AT</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="../EventAnalysis/EventAnalysis" style="cursor:pointer">Event Analysis</a>
+    </li>
+
+    </ul>
+    </div>
+    </nav>*@
+    <div class="pDetails text-right">
+        @{
+            CVMSCore.BAL.Models.Master.VMUserDetail vMUserDetail = new CVMSCore.BAL.Models.Master.VMUserDetail();
+            //var value = HttpContext.Session.GetString("LoggedUserInfo");
+            //vMUserDetail = JsonConvert.DeserializeObject<VMUserDetail>(value);
+            //CVMSCore.BAL.Models.Master.VMUserDetail vMUserDetail = (CVMSCore.BAL.Models.Master.VMUserDetail)HttpContext.
+            //var value = HttpContext.Session.GetString("LoggedUserInfo");
+            if (vMUserDetail != null)
+            {
+                if (!string.IsNullOrEmpty(vMUserDetail.UserSubType))
+                {
+                    //if (!string.IsNullOrEmpty(vMUserDetail.LoggedInName))
+                    //{
+                    <strong class="mr-1">Welcome - <span>@vMUserDetail.LoggedInName</span></strong>
+
+                    <span class="text-dark">(@vMUserDetail.UserName)</span>
+                    //}
+                }
+            }
+        }
+        @*<strong class="mr-1">Welcome - <span>Ericsson</span></strong><span class="text-dark">(Testgmail@testmail.com)</span>*@
+    </div>
+    <div class="wraper-main-detail">
+        <div class="container-fluid ">
+            @*<input type='hidden' id='previousselectedCompanyId' />
+            <input type='hidden' id='previousselectedVendorId' />
+            <input type='hidden' id='previousselectedProjectId' />*@
+
+            <div id="dvComminHiddenValues"></div>
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="divLoader" class="page-loader" style="display:none">
+        <img src="~/Content/images/loader.gif" class="loader-img">
+        @*<img src="~/Content/images/logo-ani-nesw.gif" class="loader-img">*@
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="~/content/js/jquery.multiselect.js"></script>
+    <script src="~/content/js/layout.js"></script>
+    <script src="~/content/js/common.js"></script>
+    <script src="~/content/js/account/modulelogin.js"></script>
+    @RenderSection("layoutjs", required: false)
+
+</body>
+
+</html>

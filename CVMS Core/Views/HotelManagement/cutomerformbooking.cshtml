@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewData["Title"] = "cutomerformbooking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  @*  <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+       
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" id="" href="https://localhost:7044/HotelManagement/Customerhomepage#"> Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="" href="https://localhost:7044/HotelManagement/cutomerformbooking"> Book Hotel <span class="sr-only">(current)</span></a>
+                </li>
+              
+                <li class="nav-item nav-item-right" style="margin-left: 1000px;">
+                    <a href="#" class="nav-link badge badge-blue">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>*@
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid  Dark link">
+         
+            <ul class="nav navbar-nav">
+                <li><a href="https://localhost:7044/HotelManagement/Customerhomepage#" style="color:black">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+            <li><a href="https://localhost:7044/HotelManagement/cutomerformbooking" style="color:black">Book Hotel</a></li>
+            </ul>
+           
+        </div>
+    </nav>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+   
+    <h1 style="text-align:center">Booking Form</h1>
+    <form action="#" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <span class="text-danger" id="fname-error"></span>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+        <span class="text-danger" id="lname-error"></span>
+
+        <label for="adharNumber">Aadhar Number:</label>
+        <input type="text" id="adharNumber" name="adharNumber" required>
+        <span class="text-danger" id="aadhar-error"></span>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        <span class="text-danger" id="address-error"></span>
+
+        <label for="city"> City:</label>
+
+        <select name="city" id="city">
+            <option disabled selected="Select">Select City</option>
+            <span class="text-danger" id="city-error"></span>
+        </select>
+
+        <label for="hotel"> Hotel:</label>
+
+        <select name="hotel" id="hotel">
+            <option disabled selected="">Select Hotel</option>
+            <span class="text-danger" id="hotel-error"></span>
+
+        </select>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <span class="text-danger" id="phone-error"></span>
+
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" name="email" required>
+        <span class="text-danger" id="email-error"></span>
+
+        <label for="roomPreference">Room Preference:</label>
+        <select id="roomPreference" name="roomPreference" required >
+            <option selected disabled value="Room Type">Room Type</option>
+          @*  <option value="single">Single</option>
+            <option value="double">Double</option>
+            <option value="suite">Suite</option>*@
+        </select>
+
+      
+
+        <label for="adults">Number of Adults:</label>
+        <input type="number" id="adults" name="adults" required>
+
+        <label for="startDate">Check In:</label>
+        <input type="date" id="checkin" name="startDate" required>
+
+        <label for="endDate">Check Out:</label>
+        <input type="date" id="checkout" name="endDate" required>
+
+        <label for="payment"> Payment:</label>
+        <select id="payment" name="Payment" required>
+            <option selected disabled value="">Payment</option>
+            <option value="Cash">Cash</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="UPI">UPI</option>
+           
+        </select>
+        <input type="hidden" id="Hiddenid" value="@ViewBag.Userid" />
+        <button id="hotelButton" onclick="window.location.href='https://localhost:7044/HotelManagement/showimage'">
+            <img src="~/myfile/hotel_room pic.jpeg"  alt="Hotel Image" width="200" height="150">
+        </button>
+
+
+        <button id="submit" type="submit">Submit</button>
+    </form>
+        
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script src="~/content/js/hotelmanagement/binding.js"></script>
+

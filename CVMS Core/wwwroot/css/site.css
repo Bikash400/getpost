@@ -1,0 +1,21 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    /*background-image: url('~/content/images/Hotel.jpg');
+    background-size: cover;*/ /* Adjust as needed */
+    /* Other background properties can be added here */
+}

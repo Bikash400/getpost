@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewData["Title"] = "Customerhomepage";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style>
+  
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid  bg-primary">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="color:black">Customer Dash Board</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="https://localhost:7044/HotelManagement/admin" style="color:black">Home</a></li>
+                <li><a href="https://localhost:7044/HotelManagement/Customerhomepage#" style="color:black">Menu</a></li>
+                <li><a id="bookHotelLink" href="https://localhost:7044/HotelManagement/cutomerformbooking" style="color:black">Book Hotel</a></li>
+                <li>
+                    <a id="PatientsLink" style="color:black" href="#">Booking Status</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="body">
+        <img src="~/content/image/customer.jpg" style="width:100%" />
+    </div>
+    <input type="hidden" id="hiddenid" value="@ViewBag.Userid" />
+
+    <div id="PatientsTableContainer" style="display:none;">
+        <h2>Patient Table</h2>
+        <table class="table table-bordered" id="ptable">
+            <thead>
+                <tr>
+                    
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Aadhar Number</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Hotel</th>
+                    <th>Phone</th>
+                    <th>Emailid</th>
+                    <th>Room Preference</th>
+                    <th>Number of Adults</th>
+                    <th>Checkin</th>
+                     <th>Checkout</th>
+                      <th>Payment</th>
+                </tr>
+            </thead>
+            <tbody id="patienttable">
+                <!-- Table content will be dynamically generated here -->
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+
+        $('#PatientsLink').click(function () {
+            $('#body').hide();
+            $('#PatientsTableContainer').show();
+
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+<script src="~/content/js/hotelmanagement/customerbooking.js"></script>
+

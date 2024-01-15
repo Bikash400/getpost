@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewData["Title"] = "Customerseebookingdetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Vendor</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  
+    <div class="modal fade" id="master-toggle" tabindex="-1" role="dialog" aria-labelledby="masterModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content master-popup-content">
+                <div class="modal-header master-popup-header">
+                    <h5 class="modal-title" id="masterModalLabel">Employees</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body master-popup-body">
+                    <form action="" class="popup-form">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="empname" name="name" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="address">Address:</label>
+                                    <input type="text" id="empaddress" name="address" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="empemail" name="email" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="phone">Phone:</label>
+                                    <input type="tel" id="empphone" name="phone" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group text-right mb-0">
+                                    <span id="message"></span>
+                                    <button type="button" id="submit" class="btn btn-info btnGrey">Save</button>
+                                    <button type="button" class="btn btn-danger btnGrey" data-dismiss="modal">Close</button>
+                                    @*                                     <button id="btnupdate" disabled>Update</button>
+                                    *@
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Editedmaster-toggle" tabindex="-1" role="dialog" aria-labelledby="masterModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content master-popup-content">
+                <div class="modal-header master-popup-header">
+                    <h5 class="modal-title" id="masterModalLabel">Employees</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body master-popup-body">
+                    <form action="" class="popup-form">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="Editempname" name="name" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="address">Address:</label>
+                                    <input type="text" id="Editempaddress" name="address" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="Editempemail" name="email" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="phone">Phone:</label>
+                                    <input type="tel" id="Editempphone" name="phone" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group text-right mb-0">
+                                    <span id="message"></span>
+                                    <button type="button" id="BtnUpdate" class="btn btn-info btnGrey">Update</button>
+                                    <input type="hidden" id="hiddenId" >
+                                    <button type="button" class="btn btn-danger btnGrey" data-dismiss="modal">Close</button>
+                                    @*                                     <button id="btnupdate" disabled>Update</button>
+                                    *@
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wraper-main-detail">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="search-strip" >
+                        <ul class="search-box d-flex">
+                            <li class="flex-grow-1"><input type="text" placeholder="Search.." id="search" class="form-control"></li>
+                            <li><button type="button" class="btn btnGrey"><i class="fa fa-search" aria-hidden="true"></i></button></li>
+                        </ul>
+                        <button type="button" data-toggle="modal" data-target="#master-toggle" class="btn btn-add-master btnGrey">+ Add</button>
+                      
+                    </div>
+                    <div class="table-responsive">
+                        <table id="userTbl" class="table table-hover master-table table-bordered">
+                            <thead class="table-light-head">
+                                <tr>
+                                    <th scope="col">S no.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Email id</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="store">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<script src="~/content/js/hotelmanagement/getempdetails.js"></script>
+

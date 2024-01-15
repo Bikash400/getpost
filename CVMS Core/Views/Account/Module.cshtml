@@ -1,0 +1,122 @@
+﻿@model CVMSCore.BAL.Models.Master.Modules
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Platform Access</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav id="navbar-top" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        @*<a class="navbar-brand" href="#">Masters</a>*@
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Logout","Account")">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="wraper-main-detail bg-white">
+        <div class="container-fluid masters-container">
+            <div class="row page-heading-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1 class="page-heading text-dark">Platform Access</h1>
+                </div>
+            </div>
+            <div class="row">
+                @if (ViewBag.Module != null)
+                {
+                    var count = 0;
+                    foreach (CVMSCore.BAL.Models.Master.Modules item in ViewBag.Module)
+                    {
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                            <div class="portal-box" style="background-color:@item.BackgroundColor">
+                                <img src="@item.MImage" class="project-img h-100 w-100">
+                                <div class="portal-box-inner">
+                                    <div class="portal-box-text">
+                                        <h2>@item.ModuleName</h2>
+                                        @*<input type="hidden" id="hdnId" value="@item.ModuleUrl" />*@
+                                        <input type="hidden" id="hdnId" value="@item.strModuleId" />
+                                        <input type="button" class="portal-box-btn" id="@item.ModuleUrl" value="Click to Visit" onclick="GetModuleUrl(this,'@item.strModuleId')" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                @*https://localhost:44340/DashboardConfiguration/KPIDashBoard*@
+                @*<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="portal-box" style="background-color:#ffb3da">
+                <img src="../Content/LandingImage/cvmsproject.png" class="project-img h-100 w-100">
+                <div class="portal-box-inner">
+                <div class="portal-box-text">
+                <h2>ANTS 2.0</h2>
+                <input type="hidden" id="hdnId" value="https://localhost:44340/Account/LoginModule" />
+                <input type="button" class="portal-box-btn" id="https://localhost:44340/Account/LoginModule" value="Click to Visit" onclick="GetModuleUrl(this)" />
+                </div>
+                </div>
+                </div>
+                </div>*@
+
+            </div>
+            @*<img src="~/Content/LandingImage/comingsoon.png" />*@
+        </div>
+    </div>
+
+    <div class="modal confirmation-popup C-popup-warning fade" data-backdrop="static" data-keyboard="false" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fa fa-exclamation-triangle confirmation-popup-icon" aria-hidden="true"></i>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 id="spanWaringMessage" class="confirmation-popup-msg">Warning</h5>
+                    @*<div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                    <div class="form-group text-center mb-0">
+                    <div class="row text-danger m-0 mb-3" id="divMessage" style="width:400px;">
+
+                    </div>
+                    <span id="spanWaringMessage" class="text-success"></span>
+                    </div>
+                    </div>*@
+                </div>
+                <div class="modal-footer text-center justify-content-center">
+                    <button type="button" id="error" class="btn confirmation-popup-btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="~/content/js/common.js"></script>
+    <script src="~/content/js/account/modulelogin.js"></script>
+</body>
+
+</html>

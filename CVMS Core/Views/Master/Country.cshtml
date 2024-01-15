@@ -1,0 +1,180 @@
+﻿@model CVMSCore.BAL.Models.Master.CountryMaster
+@{
+    ViewData["Title"] = "Country";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+@section layoutCSS
+    {
+    <style>
+        .error {
+            border: 3px solid red !important
+        }
+
+        .ms-options-wrap > button:focus, .ms-options-wrap > button {
+            /*background-color: #232527 !important;*/
+            border-color: #585858 !important;
+            color: #232527 !important;
+            font-size: 15px !important;
+            letter-spacing: 0.5px !important;
+            border-radius: 10px !important;
+        }
+
+        .ms-options-wrap > .ms-options > .ms-search input {
+            color: black !important;
+            /*Background: black !important*/
+        }
+
+        .ms-options-wrap > .ms-options {
+            /*position: relative !important;*/
+            border-radius: 10px !important;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="~/content/js/jquery.multiselect.css" rel="stylesheet" />
+}
+<div class="row page-heading-row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h1 class="page-heading">Country</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="search-strip">
+            <ul class="search-box d-flex">
+                <li class="flex-grow-1"><input type="text" placeholder="Search.." , autocomplete="off" id="searchData" class="form-control"></li>
+                <li><button type="button" class="btn btnGrey"><i class="fa fa-search" aria-hidden="true"></i></button></li>
+            </ul>
+            <button type="button" data-toggle="modal" data-target="#CountrySaveModal" onclick="ClearCountryForm()" class="btn btn-add-master btnGrey">+ Add</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover master-table table-bordered" id="countryTable">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No.</th>
+                        <th scope="col">Country name</th>
+                        <th scope="col">Country code</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Currency</th>
+                        <th scope="col">TimeZone</th>
+                        <th scope="col">Remark</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBodyCountry">
+                    @if (ViewBag.CountryList != null)
+                    {
+                        var count = 0;
+                        foreach (CVMSCore.BAL.Models.Master.CountryMaster item in ViewBag.CountryList)
+                        {
+                            count = count + 1;
+                            <tr>
+                                <th scope="row">@count</th>
+                                <td>
+                                    @item.Country
+                                </td>
+                                <td>@item.CountryCode</td>
+                                <td>@item.Region</td>
+                                <td>@item.Currency</td>
+                                <td>@item.TimeZone</td>
+                                <td>@item.Remarks</td>
+                                <td>
+
+                                    <input type="hidden" value="@item.CountryID" />
+                                    @*<button type="button" data-toggle="modal" data-target="#CountrySaveModal" onclick="EditCountry(this, event)" class="btn btn-sm btn-success">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>*@
+                                    <button type="button" onclick="EditCountry(this, event)" class="btn btn-sm btn-success">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="DeleteCountry(@item.CountryID)">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="CountrySaveModal" tabindex="-1" role="dialog" aria-labelledby="masterModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content master-popup-content">
+            <div class="modal-header master-popup-header">
+                <h5 class="modal-title" id="masterModalLabel">Country</h5>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <button type="button" class="close" onclick="CloseCountryModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body master-popup-body">
+                <form action="" class="popup-form">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Country, new { @class = "form-control", placeholder = "Country name", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.CountryCode, new { @class = "form-control", placeholder = "Country code", autocomplete = "off", maxlength = 3 })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                @*@Html.DropDownListFor(m => m.RegionID, ViewBag.Region as SelectList, "Select Region", new { @Class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.RegionID, new SelectList(ViewBag.RegionList, "RegionID", "Region"), "Select Region", new { @Class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                @Html.DropDownListFor(m => m.CurrencyId, new SelectList(ViewBag.CurrencyList, "Id", "CurrencyCode"), "Select Currency", new { @Class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                @Html.DropDownListFor(m => m.TimeZoneId, new SelectList(ViewBag.TimeZoneList, "Id", "DisplayName"), "Select TimeZone", new { @Class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control", placeholder = "Remarks", autocomplete = "off" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group text-right mb-0">
+                                <span id="spanMessage" class="text-success"></span>
+                                <input type="hidden" id="hdnCountry" />
+                                <button type="submit" id="btnSaveCountry" class="btn btn-info">Submit</button>
+                                <button type="button" class="btn btn-danger" onclick="CloseCountryModal()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="modal-footer master-popup-footer">
+
+            </div> -->
+        </div>
+    </div>
+</div>
+
+@section layoutjs
+    {
+    <script src="~/content/js/master/country.js"></script>
+
+}
+

@@ -617,6 +617,13 @@ namespace CVMS_Core.Controllers
 
         }
 
+   public JsonResult Getstatus(int Userid)
+        {
+            List<CustomerBookingForm> customer = new List<CustomerBookingForm>();
+            customer = Service.Getcustomerstatusser(Userid);
+            return Json(new { customer = customer });
+
+        }
     }
 
   
